@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,11 +31,12 @@ public class Mecanico {
 	private String especialidad; 
 	
 	@JsonIgnore
-	@ManyToMany 
+	@ManyToMany(mappedBy = "mecanicos")
 	private List<Reparacion>reparaciones;
 	
 	
 
+	@JsonCreator
 	public Mecanico() {
 		super();
 	}

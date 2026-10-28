@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -28,7 +30,7 @@ public class Vehiculo {
 	
 	@Column(nullable = false)
 	
-	private String año;
+	private String anio;
 	
 	@JsonIgnore
 	
@@ -38,18 +40,19 @@ public class Vehiculo {
 	
 	
 	
+	@JsonCreator
 	public Vehiculo() {
 		super();
 	}
 	
 	
 
-	public Vehiculo(String placa, String marca, String modelo, String año, List<Reparacion> reparaciones) {
+	public Vehiculo(String placa, String marca, String modelo, String anio, List<Reparacion> reparaciones) {
 		super();
 		this.placa = placa;
 		this.marca = marca;
 		this.modelo = modelo;
-		this.año = año;
+		this.anio = anio;
 		this.reparaciones = reparaciones;
 	}
 
@@ -79,12 +82,12 @@ public class Vehiculo {
 		this.modelo = modelo;
 	}
 
-	public String getAño() {
-		return año;
+	public String getAnio() {
+		return anio;
 	}
 
-	public void setAño(String año) {
-		this.año = año;
+	public void setAnio(String anio) {
+		this.anio = anio;
 	}
 
 	public List<Reparacion> getReparaciones() {

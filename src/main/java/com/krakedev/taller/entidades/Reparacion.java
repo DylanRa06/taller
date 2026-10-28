@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,11 +30,11 @@ public class Reparacion {
 	private Vehiculo vehiculo; 
 	
 	
-	@ManyToOne
+	@ManyToMany
 	@JoinTable (name = "reparacion_mecanicos",joinColumns =@JoinColumn (name = "reparacion_id"),
 	inverseJoinColumns = @JoinColumn(name = "mecanico_id"))
 	
-	private  List<Mecanico>mecanico;
+	private  List<Mecanico> mecanicos;
 	
 	@Column(nullable = false)
 	private double costo;
@@ -50,17 +53,18 @@ public class Reparacion {
 	
 
 
+	@JsonCreator
 	public Reparacion() {
 		super();
 	}
 
 
-	public Reparacion( Vehiculo vehiculo, List<Mecanico> mecanico, double costo, String descripcion,
+	public Reparacion( Vehiculo vehiculo, List<Mecanico> mecanicos, double costo, String descripcion,
 			LocalDate fechaIngreso, LocalDateTime fechaEntrega) {
 		super();
 		
 		this.vehiculo = vehiculo;
-		this.mecanico = mecanico;
+		this.mecanicos = mecanicos;
 		this.costo = costo;
 		this.descripcion = descripcion;
 		this.fechaIngreso = fechaIngreso;
@@ -88,13 +92,13 @@ public class Reparacion {
 	}
 
 
-	public List<Mecanico> getMecanico() {
-		return mecanico;
+	public List<Mecanico> getMecanicos() {
+		return mecanicos;
 	}
 
 
-	public void setMecanico(List<Mecanico> mecanico) {
-		this.mecanico = mecanico;
+	public void setMecanicos(List<Mecanico> mecanicos) {
+		this.mecanicos = mecanicos;
 	}
 
 

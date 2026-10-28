@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.krakedev.taller.entidades.Mecanico;
 
-public interface MecanicoRepository extends JpaRepository<Mecanico, String>  {
+public interface MecanicoRepository extends JpaRepository<Mecanico, Integer>  {
 
 }
